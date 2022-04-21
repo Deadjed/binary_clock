@@ -51,24 +51,24 @@ void date_time::get_time(FROM SYSTEM)
 void date_time::print_bits()
 {
 	// print bits
-	std::cout << "\n";									// LINE 1
-	std::cout << std::bitset<4>(month)[0];				// month bit
-	std::cout << 0b0 << 0b0;							// 2 empty bits
-	std::cout << std::bitset<5>(day) << "\n";			// day bits
+	std::cout << "\n";					// LINE 1
+	std::cout << std::bitset<4>(month)[0];			// month bit
+	std::cout << 0b0 << 0b0;				// 2 empty bits
+	std::cout << std::bitset<5>(day) << "\n";		// day bits
 
-														// LINE 2
-	std::cout << std::bitset<4>(month)[1];				// month bit
-	std::cout << 0b0 << 0b0;							// empty bit
-	std::cout << std::bitset<5>(hour) << "\n";			// hour bits
+								// LINE 2
+	std::cout << std::bitset<4>(month)[1];			// month bit
+	std::cout << 0b0 << 0b0;				// empty bit
+	std::cout << std::bitset<5>(hour) << "\n";		// hour bits
 
-														// LINE 3
-	std::cout << std::bitset<4>(month)[2];				// month bit
-	std::cout << 0b0;									// empty bit
+								// LINE 3
+	std::cout << std::bitset<4>(month)[2];			// month bit
+	std::cout << 0b0;					// empty bit
 	std::cout << std::bitset<6>(minute) << "\n";		// minute bits
 
-														// LINE 4
-	std::cout << std::bitset<4>(month)[3];				// month bit
-	std::cout << 0b0;									// empty bit
+								// LINE 4
+	std::cout << std::bitset<4>(month)[3];			// month bit
+	std::cout << 0b0;					// empty bit
 	std::cout << std::bitset<6>(second) << std::endl;	// second bits
 }
 
