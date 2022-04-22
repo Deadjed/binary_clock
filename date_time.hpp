@@ -45,7 +45,6 @@ private:
 	void check_time();
 
 	/*
-	 * TO BE ADDED
 	 * Verifies date values are in range
 	 */
 	void check_date();
