@@ -105,10 +105,28 @@ void date_time::check_time()
 
 void date_time::check_date()
 {
-	// add month ranges
-	// check day within current month range
-	// if so month++, day = 1
-	// check month in year range
+	// month_check holds binary values for Apr, Jun, Sep, and Nov (30 day months)
+	std::uint16_t month_check = 0b0100011010011011; 
+	std::uint16_t temp = 0;
+
+	// set day limit depending on month
+	for (size_t i = 0; i < 4; i++) 
+		month_check = (month == (month_check & (0b1111 << (i * 4))) >> (i * 4)) ? 30 : month_check;
+	if (month_check != 30 && month != 2)
+		month_check = 31;
+	else if (month == 2)
+		month_check = 28;
+	
+	// check if day within month limit
+	if (day > month_check)
+	{
+		month++;
+		day = 1;
+	}
+
+	// check month in year limit
+	if (month > 12)
+		month = 1;
 }
 
 #endif // !DATE_TIME_H
