@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <string>
+#include <array>
 #include <cstdint>
 #include <bitset>
 #include <chrono>
@@ -51,24 +52,24 @@ void date_time::get_time(FROM SYSTEM)
 void date_time::print_bits()
 {
 	// print bits
-	std::cout << "\n";					// LINE 1
-	std::cout << std::bitset<4>(month)[0];			// month bit
-	std::cout << 0b0 << 0b0;				// 2 empty bits
-	std::cout << std::bitset<5>(day) << "\n";		// day bits
+	std::cout << "\n";									// LINE 1
+	std::cout << std::bitset<4>(month)[0];				// month bit
+	std::cout << 0b0 << 0b0;							// 2 empty bits
+	std::cout << std::bitset<5>(day) << "\n";			// day bits
 
-								// LINE 2
-	std::cout << std::bitset<4>(month)[1];			// month bit
-	std::cout << 0b0 << 0b0;				// empty bit
-	std::cout << std::bitset<5>(hour) << "\n";		// hour bits
+														// LINE 2
+	std::cout << std::bitset<4>(month)[1];				// month bit
+	std::cout << 0b0 << 0b0;							// empty bit
+	std::cout << std::bitset<5>(hour) << "\n";			// hour bits
 
-								// LINE 3
-	std::cout << std::bitset<4>(month)[2];			// month bit
-	std::cout << 0b0;					// empty bit
+														// LINE 3
+	std::cout << std::bitset<4>(month)[2];				// month bit
+	std::cout << 0b0;									// empty bit
 	std::cout << std::bitset<6>(minute) << "\n";		// minute bits
 
-								// LINE 4
-	std::cout << std::bitset<4>(month)[3];			// month bit
-	std::cout << 0b0;					// empty bit
+														// LINE 4
+	std::cout << std::bitset<4>(month)[3];				// month bit
+	std::cout << 0b0;									// empty bit
 	std::cout << std::bitset<6>(second) << std::endl;	// second bits
 }
 
@@ -80,23 +81,24 @@ void date_time::tick()
 	std::this_thread::sleep_until(std::chrono::system_clock::now() + 1s);
 	second++;
 	date_time::check_time();
+	date_time::check_date();
 }
 
 void date_time::check_time()
 {
-	if (second >= 60)
+	if (second >= (0b1111 << 2))
 	{
 		second = 0;
 		minute += 1;
 	}
 
-	if (minute >= 60)
+	if (minute >= (0b1111 << 2))
 	{
 		minute = 0;
 		hour += 1;
 	}
 
-	if (hour >= 25)
+	if (hour > (0b11 << 3))
 	{
 		hour = 0;
 		day++;
@@ -130,3 +132,20 @@ void date_time::check_date()
 }
 
 #endif // !DATE_TIME_H
+
+/*
+ * 1  0001 = 31
+ * 3  0011 = 31
+ * 5  0101 = 31
+ * 7  0111 = 31
+ * 8  1000 = 31
+ * 10 1010 = 31
+ * 12 1100 = 31
+
+ * 2  0010 = 28
+
+ * 4  0100 = 30
+ * 6  0110 = 30
+ * 9  1001 = 30
+ * 11 1011 = 30
+ */
