@@ -81,7 +81,6 @@ void date_time::tick()
 	std::this_thread::sleep_until(std::chrono::system_clock::now() + 1s);
 	second++;
 	date_time::check_time();
-	date_time::check_date();
 }
 
 void date_time::check_time()
@@ -102,6 +101,7 @@ void date_time::check_time()
 	{
 		hour = 0;
 		day++;
+		date_time::check_date();
 	}
 }
 
