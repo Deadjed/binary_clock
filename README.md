@@ -27,7 +27,7 @@ By using fixed width variable types within the variables expected ranges this pr
 ### Functions
 This program only has a few simple functions to basically **store the date/time** (```get_date()```, ```get_time()```), **tick** like a clock (```tick()```), which also **updates the date/time** (```check_date()```, ```check_time()```), and then **print the current date/time** to the console in the format listed above (```print_bits()```).
 
-```get_date()``` and ```get_time()``` use simple input output streams to get data from the user.
+```get_date()``` and ```get_time()``` use simple input output streams to get data from the user.\
 ```tick()``` uses ```chrono``` and ```thread``` to wait a second before increasing the second variable and checking if time is still in range.
 ```cpp
     using namespace std::chrono_literals; // ns, us, ms, s, h...
